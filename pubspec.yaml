@@ -1,0 +1,22 @@
+name: uvy
+description: A new Flutter project.
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: '>=3.1.0 <4.0.0'
+
+dependencies:
+  amplify_auth_cognito: ^1.6.0
+  amplify_authenticator: ^1.5.0
+  amplify_flutter: ^1.6.0
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.1
+
+flutter:
+  uses-material-design: true

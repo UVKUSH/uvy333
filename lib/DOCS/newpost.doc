@@ -1,0 +1,188 @@
+import 'package:flutter/material.dart';
+import 'package:uvy/navbar/MAKEPOST/postvideo.dart';
+import 'package:uvy/navbar/MAKEPOST/uploadaudio.dart';
+import 'MAKEPOST/camera.dart';
+import 'MAKEPOST/makereel.dart';
+import 'MAKEPOST/thought.dart';
+import 'MAKEPOST/post.dart';
+
+class CreatePost extends StatelessWidget {
+  const CreatePost({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: Icon(Icons.arrow_back),
+        ),
+        body: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                Color(0xFF00FF00), // Green
+                Color(0xFFFF0000), // Red
+                Color(0xFFFF00FF), // Magenta
+                Color(0xFFFFFF00), // Yellow
+              ],
+            ),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 222.0),
+                child: Center(
+                  child: Text(
+                    'UPLOAD',
+                    style: Theme.of(context).textTheme.headlineSmall,
+                  ),
+                ),
+              ),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 0.0),
+                  child: GridView.count(
+                    crossAxisCount: 3, // Number of icons per row
+                    mainAxisSpacing: 0, // Space between rows
+                    crossAxisSpacing: 0, // Space between icons in a row
+                    children: [
+                      Column(
+                        children: [
+                          IconButton(
+                            icon: Icon(Icons.camera_enhance_sharp),
+                            onPressed: () {
+                              // Handle photo button press
+                            },
+                          ),
+                          Text('LIVE'),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          IconButton(
+                            icon: Icon(Icons.video_camera_back),
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Postvideo()),
+                              );
+                              // Handle video button press
+                            },
+                          ),
+                          Text('Video'),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          IconButton(
+                            icon: Icon(Icons.music_note),
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => UploadAudio()),
+                              );
+                              // Handle music button press
+                            },
+                          ),
+                          Text('Music'),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          IconButton(
+                            icon: Icon(Icons.text_fields),
+                            onPressed: () {
+                              // Handle text button press
+                            },
+                          ),
+                          Text('Text'),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          IconButton(
+                            icon: Icon(Icons.location_on),
+                            onPressed: () {
+                              // Handle location button press
+                            },
+                          ),
+                          Text('Location'),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          IconButton(
+                            icon: Icon(Icons.play_circle_fill),
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => MakeReelPage()),
+                              );
+                            },
+                          ),
+                          Text('Make Reel'),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          IconButton(
+                            icon: Icon(Icons.post_add_rounded),
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => Post()),
+                              );
+                              // Handle calendar button press
+                            },
+                          ),
+                          Text('Post'),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          IconButton(
+                            icon: Icon(Icons.camera_alt),
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => CameraPage()),
+                              );
+                            },
+                          ),
+                          Text('Camera'),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          IconButton(
+                            icon: Icon(Icons.message),
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => TEXT()),
+                              );
+                              // Handle settings button press
+                            },
+                          ),
+                          Text('Thought'),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ));
+  }
+}

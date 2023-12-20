@@ -1,0 +1,107 @@
+import 'package:flutter/material.dart';
+import 'package:video_player/video_player.dart';
+
+//class FYPPage extends StatefulWidget {
+  const FYPPage({Key? key}) : super(key: key);
+
+  @override
+  _FYPPageState createState() => _FYPPageState();
+}
+
+class _FYPPageState extends State<FYPPage> {
+  late List<String> videoAssets;
+  late PageController _pageController;
+  late int _currentPageIndex;
+  late VideoPlayerController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    videoAssets = [
+      'assets/video1.MP4',
+      'assets/video2.MP4',
+      'assets/video3.MP4',
+      'assets/video4.mp4',
+      'assets/video5.MP4',
+      'assets/video6.MP4',
+      'assets/video7.MP4',
+      'assets/video8.MP4',
+      'assets/video9.MP4',
+    ];
+    _pageController = PageController(initialPage: 0);
+    _currentPageIndex = 0;
+    _controller = VideoPlayerController.asset(
+      videoAssets[_currentPageIndex],
+    )..initialize().then((_) {
+        _controller.setLooping(true);
+        _controller.play();
+        setState(() {});
+      });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final statusBarHeight = MediaQuery.of(context).padding.top;
+    final screenHeight = MediaQuery.of(context).size.height;
+    final appBarHeight = kToolbarHeight;
+
+    return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(appBarHeight),
+        child: AppBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+        ),
+      ),
+      body: Column(
+        children: [
+          Expanded(
+            child: PageView.builder(
+              controller: _pageController,
+              itemCount: videoAssets.length,
+              onPageChanged: (index) {
+                setState(() {
+                  _controller.pause();
+                  _controller.dispose();
+                  _currentPageIndex = index;
+                  _controller = VideoPlayerController.asset(
+                    videoAssets[_currentPageIndex],
+                  )..initialize().then((_) {
+                      _controller.setLooping(true);
+                      _controller.play();
+                      setState(() {});
+                    });
+                });
+              },
+              itemBuilder: (BuildContext context, int index) {
+                return AspectRatio(
+                  aspectRatio: _controller.value.aspectRatio,
+                  child: VideoPlayer(_controller),
+                );
+              },
+            ),
+          ),
+          Container(
+            height: statusBarHeight,
+            child: AppBar(
+              backgroundColor: Colors.transparent,
+              elevation: 0,
+              title: Text(
+                'FYP',
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+}///////\
+

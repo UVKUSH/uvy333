@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-godhimself-dev-65056-authRole",
+      "UnauthRoleArn": "arn:aws:iam::227798917357:role/amplify-godhimself-dev-65056-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::227798917357:role/amplify-godhimself-dev-65056-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-godhimself-dev-65056-deployment",
+      "UnauthRoleName": "amplify-godhimself-dev-65056-unauthRole",
+      "StackName": "amplify-godhimself-dev-65056",
+      "StackId": "arn:aws:cloudformation:us-east-1:227798917357:stack/amplify-godhimself-dev-65056/2f144340-7b19-11ee-8585-0e745e7f1e91",
+      "AmplifyAppId": "d9ipvkbar896z"
+    },
+    "categories": {
+      "auth": {
+        "godhimselfea40c974": {}
+      }
+    }
+  }
+}

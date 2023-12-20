@@ -1,0 +1,84 @@
+import 'package:flutter/material.dart';
+
+import 'AUDIO.dart';
+import 'LIVE.dart';
+import 'VIDEO.dart';
+
+class PageFour extends StatefulWidget {
+  @override
+  _PageFourState createState() => _PageFourState();
+}
+
+class _PageFourState extends State<PageFour>
+    with SingleTickerProviderStateMixin {
+  late TabController _tabController;
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 3, vsync: this);
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+            floating: true,
+            elevation: 0,
+            title: TextField(
+              decoration: InputDecoration(
+                hintText: 'Search',
+                hintStyle: TextStyle(
+                  color: Theme.of(context).textTheme.bodyText2!.color,
+                ),
+                prefixIcon: Icon(
+                  Icons.search,
+                  color: Theme.of(context).iconTheme.color,
+                ),
+                filled: true,
+                fillColor: Theme.of(context).cardColor,
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8),
+                  borderSide: BorderSide.none,
+                ),
+                contentPadding: EdgeInsets.symmetric(
+                  vertical: 8.0,
+                  horizontal: 12.0,
+                ),
+              ),
+            ),
+            bottom: TabBar(
+              controller: _tabController,
+              tabs: [
+                Tab(text: 'AUDIO'),
+                Tab(text: 'VIDEO'),
+                Tab(text: 'LIVE'),
+              ],
+              labelColor: Theme.of(context).textTheme.bodyLarge?.color,
+              unselectedLabelColor: Colors.grey,
+            ),
+          ),
+          SliverFillRemaining(
+            child: TabBarView(
+              controller: _tabController,
+              children: [
+                AUDIO(),
+                VIDEO1(),
+                LIVETV(),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
